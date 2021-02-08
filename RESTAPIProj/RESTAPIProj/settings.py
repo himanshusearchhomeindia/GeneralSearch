@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql', #db Engine name.
         'NAME': 'RESTAPIdb',  #db name.
         'USER': 'postgres',  #db username.
-        'PASSWORD': 'shi',  #db password.
+        'PASSWORD': 'postgresql',  #db password.
         'HOST': 'localhost',  #db host value.
     }
 }

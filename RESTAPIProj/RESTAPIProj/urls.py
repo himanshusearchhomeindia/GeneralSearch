@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin #for admin panel
 from django.urls import path, include #for path and to include apps or routers urls.
-from .router import router  #import router to connect through the url.
+# from .router import router  #import router to connect through the url.
 urlpatterns = [
     path('admin/', admin.site.urls), # This is used to access the admin panel of the website.
-    path('', include("RESTAPIApp.urls")),
-    path('api/', include(router.urls)),  #This will route the given url into router.urls file for generating the POST,GET and other request's.
+    path('', include("RESTAPIApp.urls")), #This will redirect the user to the API
 ]
 
-#To access the json data API request will be like:- localhost:8000/api/employee
+#To access the json data API request will be like:- localhost:8000/properties/
