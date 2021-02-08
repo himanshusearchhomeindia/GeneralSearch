@@ -18,7 +18,7 @@ from django.urls import path, include #for path and to include apps or routers u
 # from .router import router  #import router to connect through the url.
 urlpatterns = [
     path('admin/', admin.site.urls), # This is used to access the admin panel of the website.
-    path('', include("RESTAPIApp.urls")), #This will redirect the user to the API
+    path('', include("RESTAPIApp.urls")), #This will redirect the user to the API.
 ]
 
 #To access the json data API request will be like:- localhost:8000/properties/
