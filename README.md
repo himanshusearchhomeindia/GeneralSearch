@@ -1,4 +1,4 @@
-#REST API + JSON data parse into HTML table.
+#REST API data filteration and response
 
 ##Steps.
 
