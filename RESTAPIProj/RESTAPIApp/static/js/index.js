@@ -31,6 +31,7 @@ SearchForm.addEventListener('submit', (event) => {
             // this function will show the results in the console.
             let html = "";
             data.forEach(element => {
+                //This html element will append to the front end.
                 html += `
                 <div class="d-flex flex-row p-2 bd-highlight card my-4" style="width: 70rem;">
                     <img src="${element.Proprety_Image}" class="card-img-top" alt="...">
