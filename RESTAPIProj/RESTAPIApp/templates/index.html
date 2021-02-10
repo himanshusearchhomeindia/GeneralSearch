@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IDEA HOMES </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/color.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/short_icon.png' %}">
+
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -14,25 +22,95 @@
 </head>
 
 <body>
-    <!-- Form Container -->
-    <div class="container my-4">
-        <!-- Form is used to send the query from front end to backend. -->
-        <form action="#" id="SearchForm">
-		{% csrf_token %}
-            <div class="input-group mb-3">
-                <!-- query input box -->
-                <input type="text" class="form-control" placeholder="Enter your query" aria-label="Recipient's username"
-                    aria-describedby="button-addon2" name="query" id="query">
-                <!-- submit input box -->
-                <button class="btn btn-outline-secondary" type="submit" name="btn" id="button-addon2">Search</button>
-            </div>
-        </form>
-    </div>
-    
-    <!-- here all the filter properties will appear. -->
-    <div class="PropertyContainer m-5" id="PropertyContainer">
 
-    </div>
+    <!-- Form Container -->
+    <!-- <div class="container my-4"> -->
+        <!-- Form is used to send the query from front end to backend. -->
+        <!-- <form action="#" id="SearchForm"> -->
+            <!-- {% csrf_token %} -->
+            <!-- <div class="input-group mb-3"> -->
+                <!-- query input box -->
+                <!-- <input type="text" class="form-control" placeholder="Enter your query" aria-label="Recipient's username" -->
+                    <!-- aria-describedby="button-addon2" name="query" id="query"> -->
+                <!-- submit input box -->
+                <!-- <button class="btn btn-outline-secondary" type="submit" name="btn" id="button-addon2">Search</button> -->
+            <!-- </div> -->
+        <!-- </form> -->
+    <!-- </div>/ -->
+
+    <!-- PROPERTY LISTING -->
+    <!-- <section id="property" class="bg_light padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 bottom40">
+                    <h2 class="uppercase">PROPERTY <span class="color_red">LISTINGS</span></h2>
+                    <div class="line_1"></div>
+                    <div class="line_2"></div>
+                    <div class="line_3"></div>
+                    <p>We have Properties in these Areas View a list of Featured Properties.</p>
+                </div>
+            </div>
+            <div class="row" id="PropertyContainer">
+
+            </div>
+        </div>
+    </section>
+     -->
+    <!-- LISTING STYLE - 2 -->
+    <section class="property-query-area property-page-bg padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 bottom40">
+                    <h2 class="text-uppercase">Advanced <span class="color_red">Search</span></h2>
+                    <div class="line_1"></div>
+                    <div class="line_2"></div>
+                    <div class="line_3"></div>
+                </div>
+            </div>
+            <div class="row">
+                <form class="findus" id="SearchForm">
+                    {% csrf_token %}
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-query form-group">
+                            <label>Keyword</label>
+                            <input class="keyword-input" placeholder="Any" required type="text" id="query">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-query form-group">
+                            <label>Loction</label>
+                            <select class="selectpicker" data-live-search="true" id="LocationQuery">
+                                <option>Bangalore</option>
+                                <option>Mumbai</option>
+                                <option>Delhi</option>
+                                <option>Punjab</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-query form-group">
+                            <label>Property Type</label>
+                            <select class="selectpicker" data-live-search="true" id="PropertyTypeQuery">
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 col-xs-12 text-right">
+                        <div class="query-submit-button top10">
+                            <input class="btn_fill" value="Search" type="submit">
+                        </div>
+                    </div>
+                </form>
+                <div class="row" id="PropertyContainer">
+
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <!--LISTING STYLE- 2 -->
+    <!-- PROPERTY LISTING -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -48,6 +126,79 @@
     -->
 </body>
 <!-- Custom javascript for making an API request -->
-{% load static %}
+
 <script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootsnav.js' %}"></script>
+
+<!--To View on scroll-->
+<!-- <script src="{% static 'js/jquery.appear.js' %}"></script> -->
+
+<!--Owl Slider-->
+<!-- <script src="{% static 'js/owl.carousel.min.js' %}"></script> -->
+
+<!--Parallax-->
+<!-- <script src="{% static 'js/parallaxie.js' %}"></script> -->
+
+<!--Fancybox-->
+<!-- <script src="{% static 'js/jquery.fancybox.min.js' %}"></script> -->
+
+<!--Cube Gallery-->
+<!-- <script src="{% static 'js/cubeportfolio.min.js' %}"></script> -->
+
+<!--Bootstrap Dropdown used for dropdwon in General search-->
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+
+<!--Video Popup-->
+<!-- <script src="{% static 'js/videobox/video.js' %}"></script> -->
+
+<!--Datepicker-->
+<!-- <script src="{% static 'js/datepicker.js' %}"></script> -->
+
+<!--Dropzone-->
+<!-- <script src="{% static 'js/dropzone.min.js' %}"></script> -->
+
+<!--Wow animation-->
+<!-- <script src="{% static 'js/wow.min.js' %}"></script> -->
+
+<!--Rang Slider-->
+<!-- <script src="{% static 'js/range-Slider.min.js' %}"></script> -->
+
+<!--Checkbox-->
+<!-- <script src="{% static 'js/selectbox-0.2.min.js' %}"></script> -->
+
+<!--Checkbox-->
+<!-- <script src="{% static 'js/scrollreveal.min.js' %}"></script> -->
+
+<!--Checkbox-->
+<!-- <script src="{% static 'js/jquery-countTo.js' %}"></script> -->
+
+<!--Checkbox-->
+<!-- <script src="{% static 'js/jquery.typewriter.js' %}"></script> -->
+
+<!--Checkbox-->
+<!-- <script src="{% static 'js/death.min.js' %}"></script> -->
+
+<!--Revolution Slider-->
+<!-- <script src="{% static 'js/themepunch/jquery.themepunch.tools.min.js' %}"></script> -->
+<!-- <script src="{% static 'js/themepunch/jquery.themepunch.revolution.min.js' %}"></script> -->
+<!-- <script src="{% static 'js/themepunch/revolution.extension.layeranimation.min.js' %}"></script> -->
+<!-- <script src="{% static 'js/themepunch/revolution.extension.navigation.min.js' %}"></script> -->
+<!-- <script src="{% static 'js/themepunch/revolution.extension.parallax.min.js' %}"></script> -->
+<!-- <script src="{% static 'js/themepunch/revolution.extension.slideanims.min.js' %}"></script> -->
+<!-- <script src="{% static 'js/themepunch/revolution.extension.video.min.js' %}"></script> -->
+
+<!--Custom Js -->
+<!-- <script src="{% static 'js/functions.js' %}"></script> -->
+
+<!--Maps & Markers-->
+<!-- <script src="{% static 'js/form.js' %}"></script> -->
+<!-- <script src="{% static 'js/custom-map.js' %}"></script> -->
+<!-- <script type="text/javascript" -->
+    <!-- src="{% static 'http://maps.googleapis.com/maps/api/js?key=AIzaSyAOBKD6V47-g_3opmidcmFapb3kSNAR70U' %}"></script> -->
+<!-- <script src="{% static 'js/gmaps.js' %}"></script> -->
+<!-- <script src="{% static 'js/contact.js' %}"></script> -->
+<!--===== #/REQUIRED JS =====-->
+
 </html>

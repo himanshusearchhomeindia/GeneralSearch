@@ -43,10 +43,10 @@ class PropertyList(models.Model):
     Area_in_sqft = models.CharField(max_length=20) #property dimensions will get stored here.
     
     BHK_val = [
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
+        ('1bhk', '1bhk'),
+        ('2bhk', '2bhk'),
+        ('3bhk', '3bhk'),
+        ('4bhk', '4bhk'),
     ] #choices for BHK's
     BHK = models.CharField(max_length=10, choices=BHK_val) #BHK values will be stored here.
     
