@@ -6,17 +6,10 @@ const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; //
 const PropertyContainer = document.getElementById('PropertyContainer');  //Accessing the property element to insert the filtered properties in it.
 
 
-// console.log(PropertyContainer);
-
 //listening to the form submission event.
 SearchForm.addEventListener('submit', (event) => {
   event.preventDefault(); //it will prevent the page reloading.
-  
-  //testing
-  // console.log("1", SearchQuery.value);
-  // console.log("2", PropertyTypeQuery.value);
-  // console.log("3", LocationQuery.value);
-  
+
   let Data = {
     'SearchQuery': SearchQuery.value,  //Text inside the searchqueryinput.
     'LocationQuery': LocationQuery.value,  //Text inside the searchqueryinput.
@@ -38,12 +31,9 @@ SearchForm.addEventListener('submit', (event) => {
   fetch(url, options) //fetch request.
     .then(Response => Response.json())//here we are converting the data into json format.
     .then(data => {
-      
-      //testing
-      // console.log(data);
-      
+
       // this function will show the results in the console.
-      if (Object.keys(data).length !=0) {        
+      if (Object.keys(data).length != 0) {
         let html = "";
         data.forEach(element => {
           //This html element will append to the front end.
@@ -84,7 +74,7 @@ SearchForm.addEventListener('submit', (event) => {
         alert('Please enter right input!')
       }
     })
-    .catch(error,()=>{
+    .catch(() => {
       alert('Please enter right input!')
     }); //if error's came it will appear into the console.
 });

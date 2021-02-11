@@ -26,14 +26,6 @@ def PropertyView(request):
     PropertyStatus = PropertyList.objects.filter(PropertyStatus__icontains = SearchQuery)  #filter the properties which matches the SearchQuery with the property status.
     Property_Type = PropertyList.objects.filter(Property_Type__icontains = PropertyTypeQuery)  #filter the properties which matches the PropertyQuery with the property type.
     BuilderName = PropertyList.objects.filter(BuilderName__icontains = SearchQuery)  #filter the properties which matches the SearchQuery with the builders name.
-    
-    #testing
-    # print("propertyname",PropertyName)
-    # print("Property desc",PropertyDescription)
-    # print("property loc",PropertyLocation)
-    # print("property stat",PropertyStatus)
-    # print("property typ",Property_Type)
-    # print("builder name",BuilderName)
 
     #Multiple filters for getting the exact output.
     NormalFilter = PropertyName.intersection(PropertyDescription, PropertyLocation, Property_Type, PropertyStatus, BuilderName)  #making a intersection from all the matched data into one with only one similar properties.   
@@ -44,8 +36,10 @@ def PropertyView(request):
     
     FinalResult = PropertyName.intersection(Filter_Prop_type) #intersection function to get results based on the property name form the Filter_Prop_type.
 
-    #testing
-    # print(FinalResult)
-
-    serializer = PropertyListSerializer(FinalResult, many=True) #serializing the data into json format.
-    return Response(serializer.data) #sending the results back to the API request.
+    if len(FinalResult) != 0:
+        serializer = PropertyListSerializer(FinalResult, many=True) #serializing the data into json format.
+        return Response(serializer.data) #sending the results back to the API request.
+    else:
+        FinalResult = Property_Type.intersection(Filter_Location)  #intersection function to get results based on the property type from Filter_Location.
+        serializer = PropertyListSerializer(FinalResult, many=True) #serializing the data into json format.
+        return Response(serializer.data) #sending the results back to the API request.

@@ -11,4 +11,4 @@ class PropertyListSerializer(serializers.ModelSerializer):
         This meta class is used to convert the data sent in a HTTP request to a Django object and a Django object to a valid response data.
         """
         model = PropertyList  #db model name.
-        fields = '__all__'  #model fields.
+        fields = '__all__'  #model fields here i am selecting all the fields.
