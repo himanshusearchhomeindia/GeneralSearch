@@ -31,7 +31,7 @@ SearchForm.addEventListener('submit', (event) => {
   fetch(url, options) //fetch request.
     .then(Response => Response.json())//here we are converting the data into json format.
     .then(data => {
-
+      console.log(data);
       // this function will show the results in the console.
       if (Object.keys(data).length != 0) {
         let html = "";

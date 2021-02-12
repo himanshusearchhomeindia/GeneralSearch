@@ -42,19 +42,9 @@ class PropertyList(models.Model):
     
     Area_in_sqft = models.CharField(max_length=20) #property dimensions will get stored here.
     
-    BHK_val = [
-        ('1bhk', '1bhk'),
-        ('2bhk', '2bhk'),
-        ('3bhk', '3bhk'),
-        ('4bhk', '4bhk'),
-    ] #choices for BHK's
-    BHK = models.CharField(max_length=10, choices=BHK_val) #BHK values will be stored here.
-    
-    Buy_or_rent = [
-        ('Buy', 'Buy'),
-        ('Rent', 'Rent'),
-    ] #choices for avaliability.
-    Avaliable_For = models.CharField(max_length=20, choices=Buy_or_rent) #property avaliability will get stored here.
+    BHK = models.CharField(max_length=20) #BHK values will be stored here.
+
+    Avaliable_For = models.CharField(max_length=8, default="Sale") #property avaliability will get stored here.
     
 
     def __str__(self):
