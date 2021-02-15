@@ -1,19 +1,26 @@
-const SearchForm = document.getElementById('SearchForm'); //Accessing the form to add eventlistener and send API request.
-const SearchQuery = document.getElementById('query'); //Accessing the user query from the input tab.
-const LocationQuery = document.getElementById('LocationQuery'); //Accessing the property location from the input tab.
-const PropertyTypeQuery = document.getElementById('PropertyTypeQuery'); //Accessing the property type from the input tab.
+let ur1 = location.search.slice(1).split('&'); //accessing the url from the page url tab with filtering the values from (1) it will divide the url into two ('&') it will filter the url from & and make a list of filtered elements.
+
+query = {}  //making an empty query dictionary to append all the queries from the search box.
+
+ur1.forEach((item) => {
+  //This loop iterate over all the values of ur1 and split them wiht the ('+').
+  item = item.split('='); //spliting the values with ('=').
+  for (let index = 0; index <= item.length; index++) {
+    //this for loop will iterate over the the item list and append the key and values in the query.
+    query[item[index]] = item[index + 1] //item[index] for key and item[index + 1] for the values.
+  }
+});
+let result = JSON.parse(JSON.stringify(query))  //converting the query into string and then in JSON form.
+
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value; //accessing the crsf token.
-const PropertyContainer = document.getElementById('PropertyContainer');  //Accessing the property element to insert the filtered properties in it.
-
-
 //listening to the form submission event.
-SearchForm.addEventListener('submit', (event) => {
-  event.preventDefault(); //it will prevent the page reloading.
-
+window.addEventListener('load', (e) => {
+  //This event listener will listen to the page load event and as soon as the page get load it will send a fetch request and append the data in the page.
+  e.preventDefault(); //it will prevent the page reloading.
   let Data = {
-    'SearchQuery': SearchQuery.value,  //Text inside the searchqueryinput.
-    'LocationQuery': LocationQuery.value,  //Text inside the searchqueryinput.
-    'PropertyTypeQuery': PropertyTypeQuery.value,  //Text inside the searchqueryinput.
+    'SearchQuery': result.query,  //Text inside the searchqueryinput.
+    'LocationQuery': result.LocationQuery,  //Text inside the searchqueryinput.
+    'PropertyTypeQuery': result.PropertyTypeQuery,  //Text inside the searchqueryinput.
   };
 
   let url = "http://127.0.0.1:8000/properties/"; //url form the json data is coming.
@@ -31,50 +38,52 @@ SearchForm.addEventListener('submit', (event) => {
   fetch(url, options) //fetch request.
     .then(Response => Response.json())//here we are converting the data into json format.
     .then(data => {
-      console.log(data);
+      const PropertyContainer = document.getElementById('PropertyContainer');  //Accessing the property element to insert the filtered properties in it.
       // this function will show the results in the console.
       if (Object.keys(data).length != 0) {
         let html = "";
         data.forEach(element => {
-          //This html element will append to the front end.
-          html += `
-                      <div class="col-md-6 col-sm-6">
-                <div class="property_item heading_space">
-                  <div class="image">
-                    <img src="${element.Proprety_Image}" alt="listin" class="img-responsive">
-                    <div class="overlay">
-                      <div class="centered"><a class="link_arrow white_border" href="property_details_1.html">View Detail</a></div>
-                    </div>
-                    <div class="feature"><span class="tag">For:- ${element.Avaliable_For}</span></div>
-                    <div class="price"><span class="tag">Price:- ${element.Property_Price}</span></div>
-                    <div class="property_meta">
-                      <span><i class="fa fa-object-group"></i>${element.Area_in_sqft} </span>
-                    </div>
-                  </div>
-                  <div class="proerty_content">
-                    <div class="proerty_text">
-                      <h3><a href="property_details_1.html">${element.PropertyName}</a></h3>
-                      <span class="bottom10">${element.Property_Description}</strong></p>
-                      <span class="bottom10">Location:-${element.Location}</strong></p>
-                      <span class="bottom10">Address:-${element.PropertyAddress}</strong></p>
-                      <span class="bottom10">BHK:-${element.BHK}</strong></p>
-                    </div>
-                    <div class="favroute clearfix">
-                      <p class="pull-left">Status:- ${element.PropertyStatus}</p>
-                      <p class="pull-left">Type:- ${element.Property_Type}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>`
+          html += `<div class="col-md-6 col-sm-6">
+          <div class="property_item heading_space">
+            <div class="image">
+              <img src="${element.Property_Image}" alt="listin" class="img-responsive">
+              <div class="overlay">
+                <div class="centered"><a class="link_arrow white_border" href="">View Detail</a></div>
+              </div>
+              <div class="feature"><span class="tag">Featured</span></div>
+              <div class="price"><span class="tag">${element.Avaliable_For}</span></div>
+              <div class="property_meta">
+                <span><i class="fa fa-object-group"></i>${element.Area_in_sqft}</span>
+                <span><i class="fa fa-bed"></i>2</span>
+                <span><i class="fa fa-bath"></i>1 Bathroom</span>
+              </div>
+            </div>
+            <div class="proerty_content">
+              <div class="proerty_text">
+                <h3><a href="property_details_1.html">${element.Property_Description}</a></h3>
+                <span class="bottom10">${element.PropertyAddress}, ${element.Location}</span>
+                <p><strong>${element.Property_Price}</strong></p>
+              </div>
+              <div class="favroute clearfix">
+                <p class="pull-left"><i class="icon-calendar2"></i> 3 Days ago</p>
+                <ul class="pull-right">
+                  <li><a href="#."><i class="icon-video"></i></a></li>
+                  <li><a href="#."><i class="icon-like"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>`;
         });
         PropertyContainer.innerHTML = html;
+        alert(data);
 
       } else {
         //if any error occured an alert message will get appear.
-        alert('Please enter right input!')
+        alert('Something went wrong please try again!');
       }
     })
     .catch(() => {
-      alert('Please enter right input!')
+      alert('Something went wrong please try again!');
     }); //if error's came it will appear into the console.
 });
